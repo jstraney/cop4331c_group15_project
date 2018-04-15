@@ -30,6 +30,12 @@ class CreateListingForm(Form):
       choices=[('auction', 'Auction Style'),('buy_now', 'Buy It Now')],
       description="style of listing")
 
+  category = SelectField('Category',
+      [Required()],
+      choices=[('ELECTRONICS', 'Electronics'), ('FRUIT', 'Fruit'), ('TOOLS', 'Tools'), ('OTHER', 'Other'), ('NONE', 'None')],
+      description="category of listing",
+      default='NONE')
+
   ask = DecimalField('Minimum Bid', [Required()], description="asking price")
 
   start = html5.DateField('Start Date', [
@@ -52,7 +58,7 @@ class ListingSearchForm(Form):
 
   sort_ord = SelectField('Sort Ord.', [Required()], choices=[('asc', 'Asc'), ('desc', 'Desc')])
 
-  tag = TextField('Tags', [], description="tags. separate by comma")
+  category = SelectField('Category', [Required()], choices=[('ELECTRONICS', 'Electronics'), ('FRUIT', 'Fruit'), ('TOOLS', 'Tools'), ('OTHER', 'Other'), ('NONE', 'None')])
 
   submit = SubmitField('Search')
 

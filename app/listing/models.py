@@ -28,6 +28,8 @@ class Listing(db.Model):
 
     type = db.Column('type', db.VARCHAR(45), default="auction", nullable=False)
 
+    category = db.Column('category', db.VARCHAR(45), default='NONE', nullable=True)
+
     # includes [active, not_started, sold]
     status = db.Column('status', db.VARCHAR(45), default="active", nullable=False)
 
