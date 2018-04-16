@@ -305,6 +305,12 @@ def place_bid(listing_id):
     # get last winner id
     winner = listing.winner
 
+    if user['id'] is listing.seller_id:
+        return jsonify({
+          "success": False,
+          "errors": {"offer": ["You cannot bid on your own listing"]}
+      })
+
     # if last winner is not None and that new winner is not current, send them an e-mail
     if winner is not None and user['id'] != winner:
 
