@@ -12,6 +12,7 @@ from app.auth.models import UserAuthentication
 from app.user.models import User
 
 from sqlalchemy import or_
+from sqlalchemy import exc
 
 auth = Blueprint('auth', __name__)
 
@@ -79,9 +80,15 @@ def signup():
         auth_token = secrets.token_urlsafe(64)
 
         # insert user into DB
-        db.session.add(user)
-        db.session.commit()
-
+        try:
+            db.session.add(user)
+            db.session.commit()
+        except exc.IntegrityError:
+             # set flash message in the session
+            flashmsg = ("The username or email you entered is already taken")
+            flash(flashmsg)
+            return render_template("auth/signup.html", page_title="Sign Up", form=form)
+            
         # create the pair of user id and auth token
         user_authentication = UserAuthentication(user.id, auth_token)
 
