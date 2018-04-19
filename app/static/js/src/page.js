@@ -13,8 +13,6 @@ app.controller('home-page', function ($elem) {
   recently_sold_aggregate.aggregate({
     source: "/listing/search",
     params: {
-      start: today.format(date_format),
-      end  : one_week_out.format(date_format),
       limit: 50,
       status: "sold"
     },
