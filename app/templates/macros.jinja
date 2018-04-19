@@ -98,7 +98,11 @@
   {% set title_key = kwargs['title_key'] if 'title_key' in kwargs else 'title'%}
   {% set title     = kwargs['title'] if 'title' in kwargs else entity[title_key] %}
 
-  {% if is_owner %}
+  {# 
+    deprecated - no longer implementing 
+    the add or remove button due to time constraints
+  #} 
+  {% if False %}
     <div title="add new image for {{title}}" class="button add-image">Add Image</div>
   {% endif %}
 
@@ -109,7 +113,11 @@
       {# the entity image. these requests are validated server side that #}
       {# A.) the logged in user owns this entity #}
       {# B.) the request has a CSRF token #}
-      {% if is_owner %}
+      {# 
+        deprecated - no longer implementing 
+        the add or remove button due to time constraints
+      #} 
+      {% if False %}
         <div title="delete image" class="button delete"></div>
       {% endif %}
       <div> 
