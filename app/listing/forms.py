@@ -30,13 +30,13 @@ class CreateListingForm(Form):
       choices=[('auction', 'Auction Style'),('buy_now', 'Buy It Now')],
       description="style of listing")
 
+  ask = DecimalField('Minimum Bid', [Required()], description="asking price")
+
   category = SelectField('Category',
       [Required()],
       choices=[('ELECTRONICS', 'Electronics'), ('FRUIT', 'Fruit'), ('TOOLS', 'Tools'), ('OTHER', 'Other'), ('NONE', 'None')],
       description="category of listing",
       default='NONE')
-
-  ask = DecimalField('Minimum Bid', [Required()], description="asking price")
 
   start = html5.DateField('Start Date', [
     Required(),

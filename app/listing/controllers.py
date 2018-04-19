@@ -80,8 +80,7 @@ def new():
     user = session['user'] if 'user' in session else None
 
     if (not user):
-        pass
-        # return redirect(url_for('auth.login'))
+        return redirect(url_for('auth.login'))
 
     if request.method == "POST":
 
