@@ -43,7 +43,7 @@ app.controller('user-profile', function ($elem) {
 
   recently_sold_aggregate = $('.aggregate.recently-sold', $elem);
 
-  user_listings_aggregate = $('.aggregate.user-created.listing', $elem);
+  var user_listings_aggregate = $('.aggregate.user-created.listing', $elem);
 
   var seller_id = user_listings_aggregate.attr('data-user');
 
@@ -52,7 +52,7 @@ app.controller('user-profile', function ($elem) {
   user_listings_aggregate.aggregate({
     source: "/listing/search",
     // get listings from this user from start of the EPOCH
-    params: {seller_id: seller_id, start: moment(new Date(0)).format(date_format)},
+    params: {seller_id: seller_id, limit: 8},
     record_template: listing_template
   });
 
