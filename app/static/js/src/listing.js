@@ -265,4 +265,7 @@ app.controller('listing-search', function ($elem) {
   $sort_ord = $('select.sort_ord', search_form);
   $sort_ord.change(auto_submit);
 
+  $category = $('select.category', search_form);
+  $category.change(auto_submit);
+
 });
