@@ -6,6 +6,9 @@ app.controller("user-edit-form", function ($form) {
 
   function handle_results (result) {
 
+    if (result.success)
+      window.location = app.site_root() + "/account";
+
   }
 
   $form.ajaxify({
