@@ -1,5 +1,5 @@
 from flask import Blueprint, request, session, jsonify,\
-                  url_for, redirect, render_template
+                  url_for, flash, redirect, render_template
 
 from app import db
 from app.user.models import User
@@ -20,6 +20,27 @@ def account ():
     else:
         #proxies the 'view' function below
         return view(user['id'])
+
+@user.route('/account/<int:id>/block', methods=['POST'])
+def block (id):
+
+    current_user = session['user'] if 'user' in session else None
+
+    if current_user is None and not user['admin']:
+        return redirect(url_for('auth.login'))
+
+    user = db.session.query(User).get(id)
+
+    blocked = request.form['block'] if 'block' in request.form else 0
+
+    user.blocked = blocked
+
+    db.session.commit()
+
+    flash("User has been successfully %s!" % ("blocked" if blocked == "1" else "unblocked"))
+
+    return view(id)
+
 
 @user.route('/account/<int:id>/edit', methods=["GET", "PUT"])
 def edit (id):

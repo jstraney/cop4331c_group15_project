@@ -8,7 +8,15 @@
     {% else %}
       {# assumed the profile is visited from listing #}
       <a href="{{url_for("listing.browse")}}">Back to Listings</a>
+      {% if user['admin'] == 1 and not is_user%}
+        
+        <form class="left-justified" action="{{url_for("user.block", id=viewed_user.id)}}" method="POST">
+          <input type="hidden" name="block" value="{{ "0" if viewed_user.blocked else "1" }}"/>
+          <input type="submit" value="{{ "UNBLOCK!" if viewed_user.blocked else "BLOCK!"}}"/>
+        </form>
+      {% endif %}
     {% endif %}
+
   </div>
 
   <div data-controller="user-profile">
