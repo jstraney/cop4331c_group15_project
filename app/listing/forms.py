@@ -58,7 +58,7 @@ class ListingSearchForm(Form):
 
   sort_ord = SelectField('Sort Ord.', [Required()], choices=[('asc', 'Asc'), ('desc', 'Desc')])
 
-  category = SelectField('Category', [Required()], choices=[('ELECTRONICS', 'Electronics'), ('FRUIT', 'Fruit'), ('TOOLS', 'Tools'), ('OTHER', 'Other'), ('NONE', 'None')])
+  category = SelectField('Category', [Required()], choices=[('', 'All'),('ELECTRONICS', 'Electronics'), ('FRUIT', 'Fruit'), ('TOOLS', 'Tools'), ('OTHER', 'Other')])
 
   submit = SubmitField('Search')
 

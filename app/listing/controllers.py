@@ -202,7 +202,7 @@ def search():
     sort_ord   = request.args.get('sort_ord')  or 'asc'
     status     = request.args.get('status')    or None
     keyword    = request.args.get('keyword')   or None
-    category   = request.args.get('category')  or 'Other'
+    category   = request.args.get('category')  or ''
     limit      = request.args.get('limit')     or None
 
     # removed this as start and end date facets seemed complicated and not widely used
@@ -213,7 +213,7 @@ def search():
         .filter(or_(Listing.seller_id == seller_id, seller_id is None))\
         .filter(or_(keyword is None, type(keyword) == str and Listing.title.like("%"+keyword+"%")))\
         .filter(or_(status is None, type(status) == str and status == Listing.status))\
-        .filter(or_(category is 'NONE', type(category) == str and category == Listing.category))\
+        .filter(or_(category is '', type(category) == str and category == Listing.category))\
         .order_by(getattr(getattr(Listing, sort_by), sort_ord)())\
         .limit(limit)\
         .all()
