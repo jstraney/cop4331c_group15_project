@@ -20,11 +20,6 @@
     <a title="sign up today" href="{{url_for("auth.signup")}}">Sign Up</a>
     <a title="log in with account" href="{{url_for("auth.login")}}">Log In</a>
   {% endif %}
-  {# check if admin flag is asserted #}
-  {% if user.admin == 1 %}
-    {# grant the keys to the kingdom #}
-    <a title="admin page" href="url_for("admin.index")">Admin Panel</a>
-  {% endif %}
 
 </div>
 {% with flash_messages = get_flashed_messages(with_categories=True) %}
